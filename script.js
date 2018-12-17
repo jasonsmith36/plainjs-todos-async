@@ -1,7 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+
+
     // create an array of todos
     var todosArray = []
+
+    //Fetch the todos from the API
+    fetch('https://jsonplaceholder.typicode.com/todos')
+    .then(response => (response.json()))
+    .then(data =>{
+      todosArray = data;
+
+      for(let i = 0; i < todosArray.length; i++){
+        createListItem(todosArray[i].title);
+      }
+
+    });
 
     // target the form
     var theForm = document.getElementById('the-form')
